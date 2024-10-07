@@ -27,6 +27,7 @@ public class Pokemon {
         setVelocidade(100);
         setVidaMax(100);
         setVida(getVidaMax());
+        setTipo(1);
     }
     //construtor com todos os atributos imutáveis
     //definir sets para os atributos mutáveis
@@ -118,7 +119,13 @@ public class Pokemon {
         if (vidaMax > 0)
         this.vidaMax = vidaMax;
     }
-
+    public void setTipo (int Tipo){
+        this.tipo = tipo;
+    }
+    public int getTipo(){
+        return this.tipo;
+    }
+    
     public void atacar(Pokemon alvo, int tipoAtaque){
 
     }
@@ -141,8 +148,8 @@ public class Pokemon {
         }
     }
 
-    public void TestarResistenciaFraqueza(){
-
+    public boolean TestarResistenciaFraqueza(){
+        return false;
     }
     @Override
     public String toString(){
