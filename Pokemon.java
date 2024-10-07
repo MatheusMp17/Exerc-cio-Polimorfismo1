@@ -1,4 +1,6 @@
+import java.util.*;
 public class Pokemon {
+    private Random gerador = new Random();
     private String nome;
     private String classe;
     private int indicePokedex;
@@ -16,17 +18,11 @@ public class Pokemon {
     public Pokemon(String nome, String classe, int indicePokedex, float altura, float peso, String regiao, int numeroEvolucoes){
         setAltura(altura);
         setClasse(classe);
-        setDefesa(1);
-        setEvolucaoAtual(1);
         setIndicePokedex(indicePokedex);
         setNome(nome);
         setNumeroEvolucoes(numeroEvolucoes);
         setPeso(peso);
         setRegiao(regiao);
-        setAtaque(100);
-        setVelocidade(100);
-        setVidaMax(100);
-        setVida(getVidaMax());
     }
     //construtor com todos os atributos imutáveis
     //definir sets para os atributos mutáveis
@@ -35,7 +31,7 @@ public class Pokemon {
         return tipo;
     }
     public void setTipo(int tipo){
-        this.tipo = tipo;
+        this.tipo =tipo;
     }
     public float getAltura() {
         return altura;
@@ -141,8 +137,50 @@ public class Pokemon {
         }
     }
 
-    public void TestarResistenciaFraqueza(){
+    /*
+     * tipos:
+     * 0 Normal
+     * 1 Fogo
+     * 2 Agua
+     * 3 Planta
+     */
+    public boolean testarResistencia(int tipoAtaque, int tipoDefensor){
+        if(tipoDefensor == tipoAtaque || tipoDefensor == 0 || tipoAtaque == 0){
+            return false;
+        }
+        else if(tipoDefensor == 1 && tipoAtaque == 3){
+            return true;
+        }
+        else if(tipoDefensor == 2 && tipoAtaque == 1){
+            return true;
+        }
+        else if(tipoDefensor == 3 && tipoAtaque == 2){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public boolean testarFraqueza(int tipoAtaque, int tipoDefensor){
+        if(tipoDefensor == tipoAtaque || tipoDefensor == 0 || tipoAtaque == 0){
+            return false;
+        }
+        else if(tipoDefensor == 3 && tipoAtaque == 1){
+            return true;
+        }
+        else if(tipoDefensor == 1 && tipoAtaque == 2){
+            return true;
+        }
+        else if(tipoDefensor == 2 && tipoAtaque == 3){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
+    public int determinarStatusBase(int statusBase){
+        return gerador.nextInt(statusBase) + 5;
     }
     @Override
     public String toString(){
